@@ -1,0 +1,99 @@
+/* Reemplaza tu globals.css actual con esto: */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* PALETA OFICIAL NFL */
+  --nfl-navy: #00338D;
+  --nfl-red: #D50A0A;
+  --nfl-gold: #FFB81C;
+  --field-green: #006747;
+  --gridiron-gray: #A5ACAF;
+  --afc-blue: #004C54;
+  --nfc-red: #AF1E2D;
+  
+  --radius: 0.75rem;
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --primary: var(--nfl-navy);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0 0);
+  --border: oklch(0.9 0 0);
+  --muted: oklch(0.96 0 0);
+  --nfl-navy: #00338D;
+  --nfl-red: #D50A0A;
+  --nfl-gold: #FFB81C;
+  --field-green: #006747;
+  --gridiron-gray: #A5ACAF;
+  --afc-blue: #004C54;
+  --nfc-red: #AF1E2D;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.2 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --primary: var(--nfl-gold);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.25 0 0);
+  --border: oklch(1 0 0 / 0.1);
+  --muted: oklch(0.25 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-lora);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* Utilidades de colores NFL */
+.bg-nfl-navy { background-color: var(--nfl-navy); }
+.text-nfl-navy { color: var(--nfl-navy); }
+.bg-nfl-gold { background-color: var(--nfl-gold); }
+.text-nfl-gold { color: var(--nfl-gold); }
+.bg-field-green { background-color: var(--field-green); }
+.bg-afc-blue { background-color: var(--afc-blue); }
+.text-afc-blue { color: var(--afc-blue); }
+.bg-nfc-red { background-color: var(--nfc-red); }
+.text-nfc-red { color: var(--nfc-red); }
+
+/* Efectos de glassmorphism */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
+
+/* Efectos especiales NFL */
+.nfl-gradient {
+  background: linear-gradient(135deg, var(--nfl-navy) 0%, var(--field-green) 100%);
+}
+
+.team-card-hover {
+  transition: all 0.3s ease;
+}
+
+.team-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}

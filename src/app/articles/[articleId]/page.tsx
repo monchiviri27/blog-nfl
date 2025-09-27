@@ -11,6 +11,20 @@ import { ArrowLeft, Clock, User, Eye } from 'lucide-react';
 import { SocialShare } from '@/components/SocialShare';
 import { NFLBlogCard } from '@/components/ArticleCard';
 
+
+
+// 1. Exporta esta función para generar las rutas estáticas durante el build.
+export async function generateStaticParams() {
+  const articles = await getArticles(); 
+  
+  // Mapea la lista de artículos para devolver solo el parámetro 'articleId'
+  // por cada artículo.
+  return articles.map((article) => ({
+    articleId: article.id,
+  }));
+}
+
+
 export default async function ArticlePage({ params }: { params: { articleId: string } }) {
   const awaitedParams = await params;
   const articleContent = getArticleContent(awaitedParams.articleId);

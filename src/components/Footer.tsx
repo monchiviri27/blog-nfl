@@ -1,127 +1,89 @@
-// src/components/Footer.tsx
+// src/components/Footer.tsx - VERSIÓN LIMPIA Y COHERENTE
 'use client';
 
-import { 
-  Trophy, 
-  Users, 
-  BarChart3,
-  Twitter,
-  Facebook,
-  Instagram,
-  Youtube,
-  Heart
-} from 'lucide-react';
+import { Trophy, Mail } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  
-  const teams = [
-    'AFC East', 'AFC North', 'AFC South', 'AFC West',
-    'NFC East', 'NFC North', 'NFC South', 'NFC West'
-  ];
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 to-blue-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Section */}
-        <div className="py-12 grid grid-cols-1 lg:grid-cols-6 gap-8">
-          {/* Brand Section */}
-          <div className="lg:col-span-2">
+    <footer className="bg-gray-900 dark:bg-gray-800 text-white border-t border-gray-700">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Content */}
+        <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <Trophy className="h-8 w-8 text-blue-400" />
-              <span className="text-2xl font-bold">NFL Insider</span>
+              <div className="bg-nfl-gold p-2 rounded-lg">
+                <Trophy className="h-6 w-6 text-nfl-navy" />
+              </div>
+              <span className="text-2xl font-bold">NFL Blog</span>
             </div>
-            <p className="text-blue-200 mb-6">
-              Análisis expertos, estadísticas en profundidad y la cobertura más completa de la NFL.
+            <p className="text-gray-300 dark:text-gray-400 mb-6 leading-relaxed">
+              Tu fuente confiable de análisis profundos, noticias exclusivas y cobertura completa 
+              de la National Football League.
             </p>
-            <div className="flex space-x-3">
-              {[Twitter, Facebook, Instagram, Youtube].map((Icon, index) => (
-                <a 
-                  key={index}
-                  href="#" 
-                  className="bg-blue-800 hover:bg-blue-700 p-2 rounded-lg transition-colors"
-                >
-                  <Icon className="h-5 w-5" />
-                </a>
-              ))}
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-nfl-gold transition-colors">
+                <span className="sr-only">Twitter</span>
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                </svg>
+              </a>
+              <a href="#" className="text-gray-400 hover:text-nfl-gold transition-colors">
+                <span className="sr-only">Facebook</span>
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd"/>
+                </svg>
+              </a>
             </div>
           </div>
 
-          {/* Categories */}
+          {/* Quick Links */}
           <div>
-            <h4 className="font-bold mb-4 flex items-center">
-              <BarChart3 className="h-5 w-5 mr-2 text-yellow-400" />
-              Categorías
-            </h4>
+            <h4 className="font-semibold mb-4 text-gray-200 dark:text-gray-300">Enlaces Rápidos</h4>
             <ul className="space-y-2">
-              <li><a href="/analysis" className="text-blue-200 hover:text-white transition-colors">Análisis</a></li>
-              <li><a href="/draft" className="text-blue-200 hover:text-white transition-colors">Draft</a></li>
-              <li><a href="/fantasy" className="text-blue-200 hover:text-white transition-colors">Fantasy</a></li>
-              <li><a href="/injuries" className="text-blue-200 hover:text-white transition-colors">Lesiones</a></li>
-              <li><a href="/stats" className="text-blue-200 hover:text-white transition-colors">Estadísticas</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-nfl-gold transition-colors">Inicio</a></li>
+              <li><a href="/articles" className="text-gray-400 hover:text-nfl-gold transition-colors">Artículos</a></li>
+              <li><a href="/teams" className="text-gray-400 hover:text-nfl-gold transition-colors">Equipos</a></li>
+              <li><a href="/historia" className="text-gray-400 hover:text-nfl-gold transition-colors">Historia</a></li>
+              <li><a href="/about" className="text-gray-400 hover:text-nfl-gold transition-colors">Acerca de</a></li>
             </ul>
-          </div>
-
-          {/* Teams Quick Links */}
-          <div className="lg:col-span-2">
-            <h4 className="font-bold mb-4 flex items-center">
-              <Users className="h-5 w-5 mr-2 text-green-400" />
-              Divisiones NFL
-            </h4>
-            <div className="grid grid-cols-2 gap-2">
-              {teams.map((division) => (
-                <a 
-                  key={division}
-                  href={`/division/${division.toLowerCase().replace(' ', '-')}`}
-                  className="text-blue-200 hover:text-white text-sm transition-colors"
-                >
-                  {division}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-bold mb-4 flex items-center">
-              <Heart className="h-5 w-5 mr-2 text-red-400" />
+            <h4 className="font-semibold mb-4 text-gray-200 dark:text-gray-300 flex items-center">
+              <Mail className="h-5 w-5 mr-2 text-nfl-gold" />
               Newsletter
             </h4>
-            <p className="text-blue-200 text-sm mb-3">
-              Recibe análisis exclusivos en tu email.
+            <p className="text-gray-400 text-sm mb-3">
+              Recibe los mejores análisis en tu email.
             </p>
             <div className="space-y-2">
               <input 
                 type="email" 
                 placeholder="tu@email.com" 
-                className="w-full px-3 py-2 bg-blue-800 border border-blue-700 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-blue-300"
+                className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-nfl-gold text-white placeholder-gray-500 text-sm"
               />
-              <button className="w-full bg-red-600 hover:bg-red-700 py-2 rounded-lg font-semibold transition-colors">
+              <button className="w-full bg-nfl-gold text-nfl-navy hover:bg-yellow-400 py-2 rounded-lg font-semibold transition-colors text-sm">
                 Suscribirse
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="border-t border-blue-700 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-blue-300 text-sm mb-4 md:mb-0">
-              © {currentYear} NFL Insider. No afiliado a la National Football League.
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-700 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-gray-400 text-sm">
+              © {currentYear} NFL Blog. No afiliado a la National Football League.
             </div>
-            <div className="flex space-x-6 text-sm">
-              <a href="/privacy" className="text-blue-300 hover:text-white transition-colors">Privacidad</a>
-              <a href="/terms" className="text-blue-300 hover:text-white transition-colors">Términos</a>
-              <a href="/contact" className="text-blue-300 hover:text-white transition-colors">Contacto</a>
-              <a href="/sitemap" className="text-blue-300 hover:text-white transition-colors">Mapa del sitio</a>
+            <div className="flex space-x-6 text-sm text-gray-400">
+              <a href="/privacy" className="hover:text-nfl-gold transition-colors">Privacidad</a>
+              <a href="/terms" className="hover:text-nfl-gold transition-colors">Términos</a>
+              <a href="/contact" className="hover:text-nfl-gold transition-colors">Contacto</a>
             </div>
-          </div>
-          
-          {/* Disclaimer */}
-          <div className="mt-4 text-center">
-            <p className="text-blue-400 text-xs">
-              Este sitio es para fines informativos y de entretenimiento. Todas las marcas NFL son propiedad de sus respectivos dueños.
-            </p>
           </div>
         </div>
       </div>

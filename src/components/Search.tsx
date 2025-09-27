@@ -1,40 +1,71 @@
-// src/components/Search.tsx
+// src/components/Search.tsx - VERSIÓN MEJORADA
 "use client";
 
-import { useState } from 'react';
-import { NFLBlogCard } from './ArticleCard'; // <--- Importamos la tarjeta
+import { useState, useMemo } from 'react';
 import { Input } from './ui/input';
+import { SearchIcon, X } from 'lucide-react';
 
-export function Search({ articles }) {
+interface Article {
+  id: string;
+  title: string;
+  description: string;
+  category?: string;
+  team?: string;
+}
+
+interface SearchProps {
+  articles: Article[];
+  onSearchChange: (filteredArticles: Article[]) => void;
+}
+
+export function Search({ articles, onSearchChange }: SearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredArticles = articles.filter(article => {
-    const term = searchTerm.toLowerCase();
-    return (
-      article.title.toLowerCase().includes(term) ||
-      article.description.toLowerCase().includes(term) ||
-      article.category.toLowerCase().includes(term)
-    );
-  });
+  const filteredArticles = useMemo(() => {
+    if (!searchTerm.trim()) {
+      onSearchChange(articles); // Mostrar todos cuando no hay búsqueda
+      return articles;
+    }
+    
+    const term = searchTerm.toLowerCase().trim();
+    const filtered = articles.filter(article => {
+      return (
+        article.title?.toLowerCase().includes(term) ||
+        article.description?.toLowerCase().includes(term) ||
+        article.category?.toLowerCase().includes(term) ||
+        article.team?.toLowerCase().includes(term)
+      );
+    });
+    
+    onSearchChange(filtered);
+    return filtered;
+  }, [searchTerm, articles, onSearchChange]);
+
+  const clearSearch = () => {
+    setSearchTerm('');
+    onSearchChange(articles);
+  };
 
   return (
-    <div className="relative">
-      <Input
-        type="text"
-        placeholder="Buscar artículos..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full pl-10 pr-4 py-2 rounded-lg text-gray-900 placeholder-gray-500 bg-white"
-      />
-      
-      {/* Mostramos los resultados de la búsqueda */}
-      {searchTerm && (
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-          {filteredArticles.map(article => (
-            <NFLBlogCard key={article.id} article={article} />
-          ))}
-        </div>
-      )}
+    <div className="w-full max-w-2xl mx-auto">
+      <div className="relative">
+        <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Input
+          type="text"
+          placeholder="Buscar artículos, equipos, categorías..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full pl-10 pr-10 py-3 rounded-lg border-2 border-gray-200 focus:border-nfl-gold focus:ring-2 focus:ring-nfl-gold/20 transition-all duration-200 text-gray-900"
+        />
+        {searchTerm && (
+          <button
+            onClick={clearSearch}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }

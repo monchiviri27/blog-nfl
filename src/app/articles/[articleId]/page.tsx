@@ -29,7 +29,7 @@ export default async function ArticlePage({ params }: { params: { articleId: str
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       {/* Hero Header - TAMAÑOS RESPONSIVOS CORREGIDOS */}
-      <section className="relative bg-nfl-navy text-white">
+      <section className="relative nfl-gradient text-white">
         <div className="absolute inset-0 bg-gradient-to-r from-nfl-navy/90 to-field-green/80"></div>
         
         <div className="absolute inset-0 opacity-10">

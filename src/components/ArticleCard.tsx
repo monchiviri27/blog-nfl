@@ -1,4 +1,4 @@
-// src/components/ArticleCard.tsx - VERSIÓN MEJORADA
+// src/components/ArticleCard.tsx - VERSIÓN CORREGIDA
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, ArrowRight, Eye } from "lucide-react";
@@ -14,7 +14,6 @@ export function NFLBlogCard({ article }) {
 
   const formattedDate = format(new Date(date), "dd 'de' LLL, yyyy", { locale: es });
   
-  // Colores según categoría/equipo
   const getCategoryColor = () => {
     if (team === 'AFC') return 'bg-afc-blue text-white';
     if (team === 'NFC') return 'bg-nfc-red text-white';
@@ -24,9 +23,9 @@ export function NFLBlogCard({ article }) {
 
   return (
     <Link href={`/articles/${id}`} className="block group">
-      <Card className="team-card-hover overflow-hidden rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-card shadow-sm h-full">
-        {/* Imagen con overlay */}
-        <div className="relative aspect-[16/9] overflow-hidden">
+      <Card className="team-card-hover overflow-hidden rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-card shadow-sm h-full flex flex-col pt-0">
+        {/* Imagen - SIN MÁRGENES */}
+        <div className="relative h-48 overflow-hidden flex-shrink-0">
           {image && (
             <>
               <Image
@@ -35,13 +34,13 @@ export function NFLBlogCard({ article }) {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={false}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-40"></div>
               
-              {/* Badge en esquina superior */}
               {(category || team) && (
                 <div className="absolute top-3 left-3">
-                  <Badge className={`${getCategoryColor()} font-bold px-3 py-1 text-xs`}>
+                  <Badge className={`${getCategoryColor()} font-bold px-3 py-1 text-xs border-2 border-white/20`}>
                     {category || team}
                   </Badge>
                 </div>
@@ -50,34 +49,31 @@ export function NFLBlogCard({ article }) {
           )}
         </div>
 
-        <CardContent className="p-6 space-y-4 flex flex-col justify-between h-full">
-          <div className="space-y-3">
-            {/* Fecha */}
-            <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
-              <Calendar className="h-4 w-4" />
+        {/* CardContent SIN padding-top */}
+        <CardContent className="p-5 pt-0 space-y-3 flex flex-col flex-grow"> {/* ← Cambiado: pt-4 */}
+          <div className="space-y-2 flex-grow">
+            <div className="flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-400">
+              <Calendar className="h-3 w-3" />
               <span>{formattedDate}</span>
             </div>
 
-            {/* Título */}
-            <h3 className="text-xl font-bold leading-tight text-gray-900 dark:text-white line-clamp-2 group-hover:text-nfl-navy dark:group-hover:text-nfl-gold transition-colors">
+            <h3 className="text-lg font-bold leading-tight text-gray-900 dark:text-white line-clamp-2 group-hover:text-nfl-navy dark:group-hover:text-nfl-gold transition-colors mb-2">
               {title}
             </h3>
 
-            {/* Descripción */}
-            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3">
+            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-2">
               {description}
             </p>
           </div>
 
-          {/* Botón de acción */}
-          <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700">
+          <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700">
             <div className="flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-400">
               <Eye className="h-3 w-3" />
-              <span>5 min lectura</span>
+              <span>5 min</span>
             </div>
-            <div className="flex items-center space-x-2 text-nfl-navy dark:text-nfl-gold font-semibold group-hover:space-x-3 transition-all">
-              <span className="text-sm">Leer análisis</span>
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <div className="flex items-center space-x-1 text-nfl-navy dark:text-nfl-gold font-semibold text-sm group-hover:space-x-2 transition-all">
+              <span>Leer</span>
+              <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
         </CardContent>

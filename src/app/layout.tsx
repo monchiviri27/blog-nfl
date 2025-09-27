@@ -1,9 +1,11 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Footer } from '@/components/Footer';
 import { ThemeProvider } from "./providers";
+import { getArticles } from "@/lib/articles"; // Ya existe
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const lora = Lora({ subsets: ["latin"], variable: '--font-lora' });
@@ -40,17 +42,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Obtener los artículos desde tus archivos MDX
+  const articles = await getArticles();
+
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${inter.variable} ${lora.variable} dark:bg-gray-950`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Header />
-          <main className="flex-grow"> {/* ← REMOVER pt-16 - Ya no se necesita */}
+          {/* Pasar los artículos al Header para la búsqueda */}
+          <Header articles={articles} />
+          <main className="flex-grow">
             {children}
           </main>
           <Footer />

@@ -1,5 +1,5 @@
 // src/app/articles/[articleId]/page.tsx - VERSIÓN RESPONSIVA MEJORADA
-import { getArticleContent, getAllArticleIds, getArticles } from '@/lib/articles';
+import { getAllArticleIds, getArticles } from '@/lib/articles';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Image from 'next/image';

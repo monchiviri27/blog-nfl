@@ -1,7 +1,7 @@
 // src/components/SocialShare.tsx
 'use client';
 
-import { Twitter, Facebook, Link2, Share2 } from 'lucide-react';
+import { Twitter, Facebook, Link2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface SocialShareProps {

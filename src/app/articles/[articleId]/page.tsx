@@ -1,7 +1,5 @@
 // src/app/articles/[articleId]/page.tsx - VERSIÓN RESPONSIVA MEJORADA
-//import { getArticleContent, getAllArticleIds, getArticles } from '@/lib/articles';
-import { getArticleData } from "@/lib/articles";
-// Si la función getArticleData es el único import que necesitas de ese archivo.
+import { getArticleContent, getAllArticleIds, getArticles } from '@/lib/articles';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Image from 'next/image';

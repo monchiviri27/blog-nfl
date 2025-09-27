@@ -1,5 +1,7 @@
 // src/app/articles/[articleId]/page.tsx - VERSIÓN RESPONSIVA MEJORADA
-import { getArticleContent, getAllArticleIds, getArticles } from '@/lib/articles';
+//import { getArticleContent, getAllArticleIds, getArticles } from '@/lib/articles';
+import { getArticleData } from "@/lib/articles";
+// Si la función getArticleData es el único import que necesitas de ese archivo.
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Image from 'next/image';
@@ -7,7 +9,7 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import Link from 'next/link';
 import { ArrowLeft, Clock, User, Eye } from 'lucide-react';
-import type { Metadata } from 'next';
+//import type { Metadata } from 'next';
 import { SocialShare } from '@/components/SocialShare';
 import { NFLBlogCard } from '@/components/ArticleCard';
 

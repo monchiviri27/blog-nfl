@@ -87,9 +87,11 @@ export function Header({ articles = [] }: HeaderProps) {
             {/* Logo y Branding - IGUAL */}
             <Link href="/" className="flex items-center space-x-3 group flex-shrink-0">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-nfl-navy to-field-green rounded-full flex items-center justify-center shadow-lg">
-                  <Goal className="h-6 w-6 text-nfl-gold" />
-                </div>
+                <img 
+                        src="/favicon-32x32.png" // ⬅️ RUTA DE TU IMAGEN
+                        alt="Logo Pomerania Fiero NFL Blog"
+                        className="h-full w-full object-contain"
+                    /> 
                 <div className="absolute -inset-1 bg-nfl-gold/20 rounded-full blur-sm group-hover:bg-nfl-gold/30 transition-all"></div>
               </div>
               <div className="hidden sm:block">

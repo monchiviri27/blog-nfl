@@ -15,7 +15,11 @@ export function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <div className="bg-nfl-gold p-2 rounded-lg">
-                <Trophy className="h-6 w-6 text-nfl-navy" />
+                <img 
+                        src="/favicon-32x32.png" // ⬅️ RUTA DE TU IMAGEN
+                        alt="Logo Pomerania Fiero NFL Blog"
+                        className="h-full w-full object-contain"
+                    />
               </div>
               <span className="text-2xl font-bold">NFL Blog</span>
             </div>

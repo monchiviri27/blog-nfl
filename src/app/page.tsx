@@ -3,6 +3,7 @@ import { getArticles } from "@/lib/articles";
 import { NFLBlogCard } from "@/components/ArticleCard";
 import { ArrowRight, Calendar, Clock, Eye } from 'lucide-react';
 import Image from "next/image";
+import Link from "next/link"; // <--- ¡ESTO ES LO QUE FALTABA!
 
 export default async function HomePage() {
   const allArticles = await getArticles();
@@ -16,10 +17,13 @@ export default async function HomePage() {
         <div className="container mx-auto px-4">
           {featuredArticle && (
             <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden border-2 border-nfl-gold/30 transform hover:shadow-2xl transition-all duration-300">
-              <div className="grid lg:grid-cols-2 gap-0 min-h-[500px]">
+              
+              {/* CORRECCIÓN: Se añade grid-cols-1 como base para móviles */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[500px]">
                 
                 {/* Imagen del artículo */}
-                <div className="relative">
+                {/* CORRECCIÓN: Se añade altura fija (h-72) para que la imagen se vea en móvil */}
+                <div className="relative h-72 lg:h-auto"> 
                   <Image
                     src={featuredArticle.image}
                     alt={featuredArticle.alt}
@@ -84,20 +88,33 @@ export default async function HomePage() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <a 
+                    <Link 
                       href={`/articles/${featuredArticle.id}`}
                       className="inline-flex items-center justify-center space-x-2 bg-nfl-navy text-white px-6 py-3 rounded-lg hover:bg-nfl-navy/90 transition-colors font-semibold group"
                     >
                       <span>Leer análisis completo</span>
                       <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
           )}
+
         </div>
       </section>
+
+      {/* === AÑADIDO: Botón para ir al Archivo Completo === */}
+          <div className="text-center mt-12">
+            <Link
+              href="/articles" // <-- ¡Ruta a la nueva página de índice!
+              className="inline-flex items-center justify-center space-x-2 bg-nfl-gold text-nfl-navy px-8 py-3 rounded-lg hover:bg-nfc-red/90 transition-colors font-bold group shadow-lg"
+            >
+              <span>Ver todos los artículos de la NFL</span>
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+          {/* ================================================= */}
 
       {/* Grid de Artículos */}
       <section className="py-16 bg-gray-50/50 dark:bg-gray-800/30">
@@ -116,6 +133,18 @@ export default async function HomePage() {
               <NFLBlogCard key={article.id} article={article} />
             ))}
           </div>
+
+           {/* === AÑADIDO: Botón para ir al Archivo Completo === */}
+          <div className="text-center mt-12">
+            <Link
+              href="/articles" // <-- ¡Ruta a la nueva página de índice!
+              className="inline-flex items-center justify-center space-x-2 bg-nfl-gold text-nfl-navy px-8 py-3 rounded-lg hover:bg-nfc-red/90 transition-colors font-bold group shadow-lg"
+            >
+              <span>Ver todos los artículos de la NFL</span>
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+          {/* ================================================= */}
 
           {/* CTA Final - CORREGIDO */}
           <div className="text-center mt-16">
